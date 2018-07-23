@@ -12,21 +12,48 @@
 //===============================================================
 // tight coupling concept
 //any change in the Topic class requires Coupling class to change.
-    public class Coupling {
-
-        Topic t = new Topic();
-        public void startReading()
-        {
-            t.understand();
-        }
-    }
-    class Topic {
-        public void understand()
-        {
-            System.out.println("Tight coupling concept");
-        }
-    }
-
+//class CustomerRepository
+//{
+//    private readonly Database database;
+//
+//    public CustomerRepository(Database database)
+//    {
+//        this.database = database;
+//    }
+//
+//    public void Add(string CustomerName)
+//    {
+//        database.AddRow("Customer", CustomerName);
+//    }
+//}
+//
+//class Database
+//{
+//    public void AddRow(string Table, string Value)
+//    {
+//    }
+//}
 //===============================================================
 //Loose coupling concept:
 //they are mostly independent
+class Coupling {
+    private readonly IDatabase
+    database;
+
+    public CustomerRepository(IDatabase database) {
+        this.database = database;
+    }
+
+    public void Add(string CustomerName) {
+        database.AddRow("Customer", CustomerName);
+    }
+}
+
+interface IDatabase {
+    void AddRow(string Table, string Value);
+}
+
+class Database :IDatabase{
+public void AddRow(string Table,string Value){
+        }
+        }
